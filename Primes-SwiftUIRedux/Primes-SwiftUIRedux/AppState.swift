@@ -5,13 +5,22 @@
 
 import SwiftUI
 
-final class Store<State>: ObservableObject {
+typealias Reducer<State, Action> = (State, Action) -> State
+
+final class Store<State, Action>: ObservableObject {
 
     @Published
     var state: State
 
-    init(state: State) {
+    let reducer: Reducer<State, Action>
+
+    init(state: State, reducer: @escaping Reducer<State, Action>) {
         self.state = state
+        self.reducer = reducer
+    }
+
+    func send(_ action: Action) {
+        self.state = reducer(state, action)
     }
 }
 

@@ -10,7 +10,7 @@ enum CounterAction {
     case minusTapped
 }
 
-func counterReducer(state: AppState, action: CounterAction) -> AppState {
+func counterReducer(_ state: AppState, action: CounterAction) -> AppState {
     switch action {
     case .minusTapped:
         return AppState(

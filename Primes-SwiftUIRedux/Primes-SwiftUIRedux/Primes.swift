@@ -9,10 +9,10 @@ import SwiftUI
 struct Primes: App {
     
     @ObservedObject
-    var store: Store<AppState>
+    var store: Store<AppState, CounterAction>
 
     init() {
-        self.store = .init(state: .init())
+        self.store = .init(state: .init(), reducer: counterReducer(_:action:))
     }
     
     var body: some Scene {
