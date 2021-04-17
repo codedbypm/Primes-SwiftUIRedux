@@ -12,4 +12,16 @@ class AppState: ObservableObject {
 
     @Published
     var favoritePrimes: [Int] = []
+
+    var activity: [Activity] = []
+}
+
+struct Activity {
+    let date: Date
+    let type: FavoriteAction
+}
+
+enum FavoriteAction {
+    case add
+    case remove
 }
