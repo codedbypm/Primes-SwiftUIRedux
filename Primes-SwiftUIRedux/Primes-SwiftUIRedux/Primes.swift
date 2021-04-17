@@ -11,7 +11,7 @@ struct Primes: App {
         WindowGroup {
             NavigationView {
                 List {
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: CounterView()) {
                         Text("Counter Demo")
                     }
                     NavigationLink(destination: EmptyView()) {
