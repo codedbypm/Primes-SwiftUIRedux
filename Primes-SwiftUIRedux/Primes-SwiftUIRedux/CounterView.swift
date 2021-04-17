@@ -12,7 +12,7 @@ struct CounterView: View {
     var primesAPI: PrimesAPI
 
     @ObservedObject
-    var store: Store
+    var store: Store<AppState>
 
     @State
     private var isPrimeModalShown = false

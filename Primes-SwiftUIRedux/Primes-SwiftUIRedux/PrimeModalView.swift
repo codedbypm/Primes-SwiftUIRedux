@@ -8,7 +8,7 @@ import SwiftUI
 
 struct PrimeModalView: View {
     @ObservedObject
-    var store: Store
+    var store: Store<AppState>
 
     var body: some View {
         VStack {

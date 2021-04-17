@@ -7,7 +7,7 @@ import SwiftUI
 
 struct FavoritePrimes: View {
     @ObservedObject
-    var store: Store
+    var store: Store<AppState>
 
     var body: some View {
         List {

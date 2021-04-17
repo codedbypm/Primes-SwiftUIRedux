@@ -5,13 +5,13 @@
 
 import SwiftUI
 
-class Store: ObservableObject {
+final class Store<State>: ObservableObject {
 
     @Published
-    var state: AppState
+    var state: State
 
-    init() {
-        self.state = .init()
+    init(state: State) {
+        self.state = state
     }
 }
 
