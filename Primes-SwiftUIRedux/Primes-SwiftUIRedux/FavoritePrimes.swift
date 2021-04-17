@@ -15,7 +15,7 @@ struct FavoritePrimes: View {
                 Text("\($0)")
             }
             .onDelete {
-                store.send(.favorite(.deleteFavoritePrimes(at: $0)))
+                store.send(.favoritePrimes(.deleteFavoritePrimes(at: $0)))
             }
         }
         .navigationTitle("Favorite Primes")

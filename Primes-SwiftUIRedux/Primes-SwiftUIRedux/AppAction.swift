@@ -11,14 +11,18 @@ enum AppAction {
         case minusTapped
     }
 
-    enum FavoriteAction {
+    enum PrimeModal {
         case addFavorite
         case removeFavorite
+    }
+
+    enum FavoritePrimes {
         case deleteFavoritePrimes(at: IndexSet)
     }
 
     case counter(CounterAction)
-    case favorite(FavoriteAction)
+    case primeModal(PrimeModal)
+    case favoritePrimes(FavoritePrimes)
 }
 
 
@@ -26,15 +30,19 @@ func appReducer(_ state: inout AppState, action: AppAction) -> Void {
     switch action {
     case .counter(.minusTapped):
         state.count -= 1
+
     case .counter(.plusTapped):
         state.count += 1
-    case .favorite(.addFavorite):
+
+    case .primeModal(.addFavorite):
         state.favoritePrimes.append(state.count)
         state.activity.append(.init(date: .init(), type: .add(state.count)))
-    case .favorite(.removeFavorite):
+
+    case .primeModal(.removeFavorite):
         state.favoritePrimes.removeAll(where: { $0 == state.count })
         state.activity.append(.init(date: .init(), type: .remove(state.count)))
-    case .favorite(.deleteFavoritePrimes(at: let set)):
+
+    case .favoritePrimes(.deleteFavoritePrimes(at: let set)):
         set.forEach {
             let value = state.favoritePrimes[$0]
             state.favoritePrimes.remove(at: $0)
