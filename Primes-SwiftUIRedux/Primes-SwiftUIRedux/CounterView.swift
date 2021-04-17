@@ -27,6 +27,9 @@ struct CounterView: View {
     private var nthPrime = Int.min
 
     @State
+    private var nthPrimeButtonDisabled = false
+
+    @State
     private var nthPrimeCancellable: AnyCancellable?
 
     var body: some View {
@@ -50,6 +53,7 @@ struct CounterView: View {
                 action: { requestNthPrime.toggle() },
                 label: { Text("What is the \(formatCount()) prime?") }
             )
+            .disabled(nthPrimeButtonDisabled)
         }
         .font(.title)
         .navigationTitle("Counter Demo")
@@ -64,6 +68,7 @@ struct CounterView: View {
             )
         }
         .onChange(of: requestNthPrime) { _ in
+            nthPrimeButtonDisabled = true
             nthPrimeCancellable?.cancel()
             nthPrimeCancellable = nthPrime(appState.count)
                 .sink(
@@ -71,6 +76,7 @@ struct CounterView: View {
                     receiveValue: {
                         nthPrime = $0
                         didReceiveNthPrime = true
+                        nthPrimeButtonDisabled = false
                     }
                 )
         }

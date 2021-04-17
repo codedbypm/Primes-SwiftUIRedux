@@ -22,7 +22,7 @@ struct Primes: App {
                     NavigationLink(destination: CounterView(appState: appState)) {
                         Text("Counter Demo")
                     }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: FavoritePrimes(appState: appState)) {
                         Text("Favorite Primes")
                     }
                 }
