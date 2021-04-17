@@ -25,8 +25,13 @@ enum AppAction {
     case favoritePrimes(FavoritePrimes)
 }
 
+let appReducer = combine(
+    counterReducer,
+    primeModalReducer,
+    favoritePrimesReducer
+)
 
-func appReducer(_ state: inout AppState, action: AppAction) -> Void {
+func counterReducer(_ state: inout AppState, action: AppAction) -> Void {
     switch action {
     case .counter(.minusTapped):
         state.count -= 1
@@ -34,6 +39,13 @@ func appReducer(_ state: inout AppState, action: AppAction) -> Void {
     case .counter(.plusTapped):
         state.count += 1
 
+    default:
+        break
+    }
+}
+
+func primeModalReducer(_ state: inout AppState, action: AppAction) -> Void {
+    switch action {
     case .primeModal(.addFavorite):
         state.favoritePrimes.append(state.count)
         state.activity.append(.init(date: .init(), type: .add(state.count)))
@@ -42,11 +54,32 @@ func appReducer(_ state: inout AppState, action: AppAction) -> Void {
         state.favoritePrimes.removeAll(where: { $0 == state.count })
         state.activity.append(.init(date: .init(), type: .remove(state.count)))
 
+    default:
+        break
+    }
+}
+
+func favoritePrimesReducer(_ state: inout AppState, action: AppAction) -> Void {
+    switch action {
     case .favoritePrimes(.deleteFavoritePrimes(at: let set)):
         set.forEach {
             let value = state.favoritePrimes[$0]
             state.favoritePrimes.remove(at: $0)
             state.activity.append(.init(date: .init(), type: .remove(value)))
+        }
+
+    default:
+        break
+    }
+}
+
+func combine<State, Action>(
+    _ reducers: (inout State, Action) -> Void...
+) -> (inout State, Action) -> Void {
+
+    return { value, action in
+        for reducer in reducers {
+            reducer(&value, action)
         }
     }
 }

@@ -11,8 +11,14 @@ struct Primes: App {
     @ObservedObject
     var store: Store<AppState, AppAction>
 
+    private let appReducer: (inout AppState, AppAction) -> Void = combine(
+        counterReducer,
+        primeModalReducer,
+        favoritePrimesReducer
+    )
+
     init() {
-        self.store = Store(state: .init(), reducer: appReducer(_:action:))
+        self.store = Store(state: .init(), reducer: appReducer)
     }
     
     var body: some Scene {
