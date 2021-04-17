@@ -12,7 +12,7 @@ struct Primes: App {
     var store: Store<AppState, AppAction>
 
     private let appReducer: (inout AppState, AppAction) -> Void = combine(
-        counterReducer,
+        pullback(counterReducer, keyPath: \.count),
         primeModalReducer,
         favoritePrimesReducer
     )

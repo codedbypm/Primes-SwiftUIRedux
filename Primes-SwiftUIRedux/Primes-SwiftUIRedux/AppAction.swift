@@ -25,19 +25,22 @@ enum AppAction {
     case favoritePrimes(FavoritePrimes)
 }
 
-let appReducer = combine(
-    counterReducer,
-    primeModalReducer,
-    favoritePrimesReducer
-)
+func pullback<LocalValue, GlobalValue, Action>(
+    _ reducer: @escaping (inout LocalValue, Action) -> Void,
+    keyPath: WritableKeyPath<GlobalValue, LocalValue>
+) -> (inout GlobalValue, Action) -> Void {
+    return { globalValue, action in
+        reducer(&globalValue[keyPath: keyPath], action)
+    }
+}
 
-func counterReducer(_ state: inout AppState, action: AppAction) -> Void {
+func counterReducer(_ state: inout Int, action: AppAction) -> Void {
     switch action {
     case .counter(.minusTapped):
-        state.count -= 1
+        state -= 1
 
     case .counter(.plusTapped):
-        state.count += 1
+        state += 1
 
     default:
         break
