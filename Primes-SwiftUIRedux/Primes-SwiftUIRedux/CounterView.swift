@@ -7,19 +7,19 @@ import SwiftUI
 
 struct CounterView: View {
 
-    @State
-    private var count = 0
+    @ObservedObject
+    var appState: AppState
 
     var body: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 Button(
-                    action: { count -= 1 },
+                    action: { appState.count -= 1 },
                     label: { Text("-") }
                 )
-                Text("\(count)")
+                Text("\(appState.count)")
                 Button(
-                    action: { count += 1 },
+                    action: { appState.count += 1 },
                     label: { Text("+") }
                 )
             }
@@ -38,12 +38,12 @@ struct CounterView: View {
 
     func formatCount() -> String {
         formatter.numberStyle = .ordinal
-        return formatter.string(for: count) ?? ""
+        return formatter.string(for: appState.count) ?? ""
     }
 }
 
 struct CounterView_Previews: PreviewProvider {
     static var previews: some View {
-        CounterView()
+        CounterView(appState: .init())
     }
 }
