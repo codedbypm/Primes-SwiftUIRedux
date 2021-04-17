@@ -3,6 +3,7 @@
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 struct WolframAlphaResult: Decodable {
@@ -12,6 +13,7 @@ struct WolframAlphaResult: Decodable {
         let pods: [Pod]
 
         struct Pod: Decodable {
+            let scanner: String
             let primary: Bool?
             let subpods: [SubPod]
 
@@ -22,41 +24,31 @@ struct WolframAlphaResult: Decodable {
     }
 }
 
-class PrimesAPI {
+class PrimesAPI: ObservableObject {
 
-    func wolframAlpha(query: String, callback: @escaping (WolframAlphaResult?) -> Void) -> Void {
+    func nthPrime(_ n: Int) -> AnyPublisher<Int, Error> {
+        return wolframAlpha(query: "prime \(n)")
+            .compactMap { $0.queryresult.pods.first { $0.scanner == "Identity" && $0.primary == .some(true) } }
+            .compactMap { $0.subpods.first }
+            .compactMap { Int($0.plaintext) }
+            .eraseToAnyPublisher()
+    }
+
+    private func wolframAlpha(query: String) -> AnyPublisher<WolframAlphaResult, Error> {
         var components = URLComponents(string: "https://api.wolframalpha.com/v2/query")!
         components.queryItems = [
             URLQueryItem(name: "input", value: query),
             URLQueryItem(name: "format", value: "plaintext"),
             URLQueryItem(name: "output", value: "JSON"),
-            URLQueryItem(name: "appid", value: "595T73-64LA2JG844"),
+            URLQueryItem(name: "appid", value: "6H69Q3-828TKQJ4EP"),
         ]
 
-        URLSession.shared.dataTask(with: components.url(relativeTo: nil)!) { data, response, error in
-            callback(
-                data
-                    .flatMap { try? JSONDecoder().decode(WolframAlphaResult.self, from: $0) }
-            )
-        }
-        .resume()
-    }
-
-
-    func nthPrime(_ n: Int, callback: @escaping (Int?) -> Void) -> Void {
-        wolframAlpha(query: "prime \(n)") { result in
-            callback(
-                result
-                    .flatMap {
-                        $0.queryresult
-                            .pods
-                            .first(where: { $0.primary == .some(true) })?
-                            .subpods
-                            .first?
-                            .plaintext
-                    }
-                    .flatMap(Int.init)
-            )
-        }
+        return URLSession.shared
+            .dataTaskPublisher(for: components.url(relativeTo: nil)!)
+            .tryCompactMap {
+                try JSONDecoder().decode(WolframAlphaResult.self, from: $0.data)
+            }
+            .receive(on: RunLoop.main)
+            .eraseToAnyPublisher()
     }
 }

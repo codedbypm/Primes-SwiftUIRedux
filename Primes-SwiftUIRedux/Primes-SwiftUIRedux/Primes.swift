@@ -7,6 +7,7 @@ import SwiftUI
 
 @main
 struct Primes: App {
+    
     @ObservedObject
     var appState: AppState
 
@@ -27,6 +28,7 @@ struct Primes: App {
                 }
                 .navigationTitle("State management")
             }
+            .environmentObject(PrimesAPI())
         }
     }
 }

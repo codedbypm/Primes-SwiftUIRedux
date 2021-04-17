@@ -1,17 +1,33 @@
-// 
+//
 // Project: Primes-SwiftUIRedux 
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct CounterView: View {
+
+    @EnvironmentObject
+    var primesAPI: PrimesAPI
 
     @ObservedObject
     var appState: AppState
 
     @State
     private var isPrimeModalShown = false
+
+    @State
+    private var didReceiveNthPrime: Bool = false
+
+    @State
+    private var requestNthPrime = false
+
+    @State
+    private var nthPrime = Int.min
+
+    @State
+    private var nthPrimeCancellable: AnyCancellable?
 
     var body: some View {
         VStack(spacing: 20.0) {
@@ -30,14 +46,33 @@ struct CounterView: View {
                 action: { isPrimeModalShown.toggle() },
                 label: { Text("Is this prime?") }
             )
-            Button(action: {}, label: {
-                Text("What is the \(formatCount()) prime?")
-            })
+            Button(
+                action: { requestNthPrime.toggle() },
+                label: { Text("What is the \(formatCount()) prime?") }
+            )
         }
         .font(.title)
         .navigationTitle("Counter Demo")
-        .sheet(isPresented: self.$isPrimeModalShown) {
+        .sheet(isPresented: $isPrimeModalShown) {
             PrimeModalView(appState: appState)
+        }
+        .alert(isPresented: $didReceiveNthPrime) {
+            Alert(
+                title: Text("What is the \(formatCount()) prime?"),
+                message: Text("It is \(nthPrime)"),
+                dismissButton: nil
+            )
+        }
+        .onChange(of: requestNthPrime) { _ in
+            nthPrimeCancellable?.cancel()
+            nthPrimeCancellable = nthPrime(appState.count)
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: {
+                        nthPrime = $0
+                        didReceiveNthPrime = true
+                    }
+                )
         }
     }
 
@@ -47,10 +82,10 @@ struct CounterView: View {
         formatter.numberStyle = .ordinal
         return formatter.string(for: appState.count) ?? ""
     }
-}
 
-struct CounterView_Previews: PreviewProvider {
-    static var previews: some View {
-        CounterView(appState: .init())
+    func nthPrime(_ value: Int) -> AnyPublisher<Int, Error> {
+        return primesAPI
+            .nthPrime(value)
+            .eraseToAnyPublisher()
     }
 }

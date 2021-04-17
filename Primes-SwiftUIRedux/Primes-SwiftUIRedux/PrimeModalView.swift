@@ -3,6 +3,7 @@
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import Combine
 import SwiftUI
 
 struct PrimeModalView: View {
@@ -26,7 +27,6 @@ struct PrimeModalView: View {
                         Text("Save to favorite primes")
                     }
                 }
-
             } else {
                 Text("\(appState.count) is not prime :(")
             }
