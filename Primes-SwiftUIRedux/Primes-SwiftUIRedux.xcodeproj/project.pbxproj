@@ -3,23 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD1BEDC8262B0760009E969A /* Primes_SwiftUIReduxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDC7262B0760009E969A /* Primes_SwiftUIReduxApp.swift */; };
 		FD1BEDCA262B0760009E969A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDC9262B0760009E969A /* ContentView.swift */; };
 		FD1BEDCC262B0760009E969A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD1BEDCB262B0760009E969A /* Assets.xcassets */; };
 		FD1BEDCF262B0760009E969A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD1BEDCE262B0760009E969A /* Preview Assets.xcassets */; };
+		FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */; };
+		FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDDC262B07BA009E969A /* Primes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FD1BEDC4262B0760009E969A /* Primes-SwiftUIRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Primes-SwiftUIRedux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD1BEDC7262B0760009E969A /* Primes_SwiftUIReduxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primes_SwiftUIReduxApp.swift; sourceTree = "<group>"; };
 		FD1BEDC9262B0760009E969A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD1BEDCB262B0760009E969A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD1BEDCE262B0760009E969A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD1BEDD0262B0760009E969A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD1BEDDC262B07BA009E969A /* Primes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +54,7 @@
 		FD1BEDC6262B0760009E969A /* Primes-SwiftUIRedux */ = {
 			isa = PBXGroup;
 			children = (
-				FD1BEDC7262B0760009E969A /* Primes_SwiftUIReduxApp.swift */,
+				FD1BEDDC262B07BA009E969A /* Primes.swift */,
 				FD1BEDC9262B0760009E969A /* ContentView.swift */,
 				FD1BEDCB262B0760009E969A /* Assets.xcassets */,
 				FD1BEDD0262B0760009E969A /* Info.plist */,
@@ -85,6 +87,9 @@
 			dependencies = (
 			);
 			name = "Primes-SwiftUIRedux";
+			packageProductDependencies = (
+				FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */,
+			);
 			productName = "Primes-SwiftUIRedux";
 			productReference = FD1BEDC4262B0760009E969A /* Primes-SwiftUIRedux.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +117,9 @@
 				Base,
 			);
 			mainGroup = FD1BEDBB262B0760009E969A;
+			packageReferences = (
+				FD1BEDD7262B0791009E969A /* XCRemoteSwiftPackageReference "SwiftUIRedux" */,
+			);
 			productRefGroup = FD1BEDC5262B0760009E969A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,7 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD1BEDCA262B0760009E969A /* ContentView.swift in Sources */,
-				FD1BEDC8262B0760009E969A /* Primes_SwiftUIReduxApp.swift in Sources */,
+				FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +336,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FD1BEDD7262B0791009E969A /* XCRemoteSwiftPackageReference "SwiftUIRedux" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:codedbypm/SwiftUIRedux.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD1BEDD7262B0791009E969A /* XCRemoteSwiftPackageReference "SwiftUIRedux" */;
+			productName = "SwiftUIRedux Lib";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD1BEDBC262B0760009E969A /* Project object */;
 }

@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUI Redux",
+        "repositoryURL": "git@github.com:codedbypm/SwiftUIRedux.git",
+        "state": {
+          "branch": "main",
+          "revision": "f362e34f04700de060a4499f4009251f5ab38f39",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

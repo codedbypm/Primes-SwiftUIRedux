@@ -6,10 +6,12 @@
 import SwiftUI
 
 @main
-struct Primes_SwiftUIReduxApp: App {
+struct Primes: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView()
+            }
         }
     }
 }
