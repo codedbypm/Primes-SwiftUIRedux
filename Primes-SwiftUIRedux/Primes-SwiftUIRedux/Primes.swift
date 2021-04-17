@@ -10,7 +10,15 @@ struct Primes: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                List {
+                    NavigationLink(destination: EmptyView()) {
+                        Text("Counter Demo")
+                    }
+                    NavigationLink(destination: EmptyView()) {
+                        Text("Favorite Primes")
+                    }
+                }
+                .navigationTitle("State management")
             }
         }
     }

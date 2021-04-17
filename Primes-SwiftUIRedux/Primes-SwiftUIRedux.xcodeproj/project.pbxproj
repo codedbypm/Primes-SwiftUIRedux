@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD1BEDCA262B0760009E969A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDC9262B0760009E969A /* ContentView.swift */; };
 		FD1BEDCC262B0760009E969A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD1BEDCB262B0760009E969A /* Assets.xcassets */; };
 		FD1BEDCF262B0760009E969A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD1BEDCE262B0760009E969A /* Preview Assets.xcassets */; };
 		FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */; };
@@ -16,7 +15,6 @@
 
 /* Begin PBXFileReference section */
 		FD1BEDC4262B0760009E969A /* Primes-SwiftUIRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Primes-SwiftUIRedux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD1BEDC9262B0760009E969A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FD1BEDCB262B0760009E969A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD1BEDCE262B0760009E969A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD1BEDD0262B0760009E969A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				FD1BEDDC262B07BA009E969A /* Primes.swift */,
-				FD1BEDC9262B0760009E969A /* ContentView.swift */,
 				FD1BEDCB262B0760009E969A /* Assets.xcassets */,
 				FD1BEDD0262B0760009E969A /* Info.plist */,
 				FD1BEDCD262B0760009E969A /* Preview Content */,
@@ -146,7 +143,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD1BEDCA262B0760009E969A /* ContentView.swift in Sources */,
 				FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
