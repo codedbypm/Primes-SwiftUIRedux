@@ -35,8 +35,8 @@ struct Activity {
 }
 
 enum FavoriteAction {
-    case add
-    case remove
+    case add(Int)
+    case remove(Int)
 }
 
 struct User {

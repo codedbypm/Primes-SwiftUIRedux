@@ -12,7 +12,7 @@ struct CounterView: View {
     var primesAPI: PrimesAPI
 
     @ObservedObject
-    var store: Store<AppState, CounterAction>
+    var store: Store<AppState, AppAction>
 
     @State
     private var isPrimeModalShown = false
@@ -36,12 +36,12 @@ struct CounterView: View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 Button(
-                    action: { store.send(.minusTapped) },
+                    action: { store.send(.counter(.minusTapped)) },
                     label: { Text("-") }
                 )
                 Text("\(store.state.count)")
                 Button(
-                    action: { store.send(.plusTapped) },
+                    action: { store.send(.counter(.plusTapped)) },
                     label: { Text("+") }
                 )
             }

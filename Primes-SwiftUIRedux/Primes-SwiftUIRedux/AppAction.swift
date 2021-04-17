@@ -5,16 +5,40 @@
 
 import Foundation
 
-enum CounterAction {
-    case plusTapped
-    case minusTapped
+enum AppAction {
+    enum CounterAction {
+        case plusTapped
+        case minusTapped
+    }
+
+    enum FavoriteAction {
+        case addFavorite
+        case removeFavorite
+        case deleteFavoritePrimes(at: IndexSet)
+    }
+
+    case counter(CounterAction)
+    case favorite(FavoriteAction)
 }
 
-func counterReducer(_ state: inout AppState, action: CounterAction) -> Void {
+
+func appReducer(_ state: inout AppState, action: AppAction) -> Void {
     switch action {
-    case .minusTapped:
+    case .counter(.minusTapped):
         state.count -= 1
-    case .plusTapped:
+    case .counter(.plusTapped):
         state.count += 1
+    case .favorite(.addFavorite):
+        state.favoritePrimes.append(state.count)
+        state.activity.append(.init(date: .init(), type: .add(state.count)))
+    case .favorite(.removeFavorite):
+        state.favoritePrimes.removeAll(where: { $0 == state.count })
+        state.activity.append(.init(date: .init(), type: .remove(state.count)))
+    case .favorite(.deleteFavoritePrimes(at: let set)):
+        set.forEach {
+            let value = state.favoritePrimes[$0]
+            state.favoritePrimes.remove(at: $0)
+            state.activity.append(.init(date: .init(), type: .remove(value)))
+        }
     }
 }
