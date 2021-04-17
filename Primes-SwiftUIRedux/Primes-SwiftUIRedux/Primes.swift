@@ -14,7 +14,7 @@ struct Primes: App {
     private let appReducer: (inout AppState, AppAction) -> Void = combine(
         pullback(counterReducer, keyPath: \.count),
         primeModalReducer,
-        favoritePrimesReducer
+        pullback(favoritePrimesReducer, keyPath: \.favoritePrimesState)
     )
 
     init() {

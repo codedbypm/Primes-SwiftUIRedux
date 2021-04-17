@@ -29,6 +29,23 @@ struct AppState {
     var loggedInUser: User? = nil
 }
 
+extension AppState {
+    var favoritePrimesState: FavoritePrimeState {
+        get {
+            .init(favoritePrimes: favoritePrimes, activity: activity)
+        }
+        set {
+            favoritePrimes = newValue.favoritePrimes
+            activity = newValue.activity
+        }
+    }
+}
+
+struct FavoritePrimeState {
+    var favoritePrimes: [Int] = []
+    var activity: [Activity] = []
+}
+
 struct Activity {
     let date: Date
     let type: FavoriteAction

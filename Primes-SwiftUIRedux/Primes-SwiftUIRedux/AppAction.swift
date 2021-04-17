@@ -62,7 +62,7 @@ func primeModalReducer(_ state: inout AppState, action: AppAction) -> Void {
     }
 }
 
-func favoritePrimesReducer(_ state: inout AppState, action: AppAction) -> Void {
+func favoritePrimesReducer(_ state: inout FavoritePrimeState, action: AppAction) -> Void {
     switch action {
     case .favoritePrimes(.deleteFavoritePrimes(at: let set)):
         set.forEach {
