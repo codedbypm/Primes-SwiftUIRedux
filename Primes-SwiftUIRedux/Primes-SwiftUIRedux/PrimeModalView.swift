@@ -11,7 +11,7 @@ struct PrimeModalView: View {
     var store: Store<AppState, AppAction>
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20.0) {
             if isPrime(store.state.count) {
                 Text("\(store.state.count) is prime 🎉")
                 if store.state.favoritePrimes.contains(store.state.count) {
