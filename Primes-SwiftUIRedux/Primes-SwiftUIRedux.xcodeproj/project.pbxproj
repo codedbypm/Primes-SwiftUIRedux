@@ -16,6 +16,7 @@
 		FD1BEDE7262B0EF4009E969A /* PrimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */; };
 		FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */; };
 		FD1BEDEE262B5355009E969A /* FavoritePrimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDED262B5355009E969A /* FavoritePrimes.swift */; };
+		FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDF1262B6552009E969A /* AppAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimesAPI.swift; sourceTree = "<group>"; };
 		FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalView.swift; sourceTree = "<group>"; };
 		FD1BEDED262B5355009E969A /* FavoritePrimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimes.swift; sourceTree = "<group>"; };
+		FD1BEDF1262B6552009E969A /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				FD1BEDE3262B0D0D009E969A /* AppState.swift */,
+				FD1BEDF1262B6552009E969A /* AppAction.swift */,
 				FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */,
 				FD1BEDDC262B07BA009E969A /* Primes.swift */,
 				FD1BEDE0262B0988009E969A /* CounterView.swift */,
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */,
 				FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */,
 				FD1BEDE7262B0EF4009E969A /* PrimesAPI.swift in Sources */,
 				FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */,

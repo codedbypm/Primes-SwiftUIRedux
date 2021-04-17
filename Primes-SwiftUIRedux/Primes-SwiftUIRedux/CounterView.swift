@@ -36,12 +36,12 @@ struct CounterView: View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 Button(
-                    action: { store.state.count -= 1 },
+                    action: { store.state = counterReducer(state: store.state, action: .minusTapped) },
                     label: { Text("-") }
                 )
                 Text("\(store.state.count)")
                 Button(
-                    action: { store.state.count += 1 },
+                    action: { store.state = counterReducer(state: store.state, action: .plusTapped) },
                     label: { Text("+") }
                 )
             }
