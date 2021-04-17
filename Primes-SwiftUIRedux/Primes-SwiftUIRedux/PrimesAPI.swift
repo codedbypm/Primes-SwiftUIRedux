@@ -30,7 +30,7 @@ class PrimesAPI {
             URLQueryItem(name: "input", value: query),
             URLQueryItem(name: "format", value: "plaintext"),
             URLQueryItem(name: "output", value: "JSON"),
-            URLQueryItem(name: "appid", value: wolframAlphaApiKey),
+            URLQueryItem(name: "appid", value: "595T73-64LA2JG844"),
         ]
 
         URLSession.shared.dataTask(with: components.url(relativeTo: nil)!) { data, response, error in

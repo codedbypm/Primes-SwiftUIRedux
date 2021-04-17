@@ -9,4 +9,6 @@ class AppState: ObservableObject {
 
     @Published
     var count = 0
+
+    var favoritePrimes: [Int] = []
 }

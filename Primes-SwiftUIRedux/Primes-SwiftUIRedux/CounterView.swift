@@ -10,6 +10,9 @@ struct CounterView: View {
     @ObservedObject
     var appState: AppState
 
+    @State
+    private var isPrimeModalShown = false
+
     var body: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
@@ -23,15 +26,19 @@ struct CounterView: View {
                     label: { Text("+") }
                 )
             }
-            Button(action: {}, label: {
-                Text("Is this prime?")
-            })
+            Button(
+                action: { isPrimeModalShown.toggle() },
+                label: { Text("Is this prime?") }
+            )
             Button(action: {}, label: {
                 Text("What is the \(formatCount()) prime?")
             })
         }
         .font(.title)
         .navigationTitle("Counter Demo")
+        .sheet(isPresented: self.$isPrimeModalShown) {
+            PrimeModalView(appState: appState)
+        }
     }
 
     private let formatter = NumberFormatter()

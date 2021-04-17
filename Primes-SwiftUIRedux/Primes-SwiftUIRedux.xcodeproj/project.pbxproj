@@ -14,6 +14,7 @@
 		FD1BEDE1262B0988009E969A /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE0262B0988009E969A /* CounterView.swift */; };
 		FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE3262B0D0D009E969A /* AppState.swift */; };
 		FD1BEDE7262B0EF4009E969A /* PrimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */; };
+		FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		FD1BEDE0262B0988009E969A /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		FD1BEDE3262B0D0D009E969A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimesAPI.swift; sourceTree = "<group>"; };
+		FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,14 @@
 		FD1BEDC6262B0760009E969A /* Primes-SwiftUIRedux */ = {
 			isa = PBXGroup;
 			children = (
+				FD1BEDE3262B0D0D009E969A /* AppState.swift */,
+				FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */,
 				FD1BEDDC262B07BA009E969A /* Primes.swift */,
 				FD1BEDE0262B0988009E969A /* CounterView.swift */,
 				FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */,
 				FD1BEDCB262B0760009E969A /* Assets.xcassets */,
 				FD1BEDD0262B0760009E969A /* Info.plist */,
 				FD1BEDCD262B0760009E969A /* Preview Content */,
-				FD1BEDE3262B0D0D009E969A /* AppState.swift */,
 			);
 			path = "Primes-SwiftUIRedux";
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */,
 				FD1BEDE7262B0EF4009E969A /* PrimesAPI.swift in Sources */,
 				FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */,
 				FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */,
