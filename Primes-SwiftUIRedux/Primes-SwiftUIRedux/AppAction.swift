@@ -10,21 +10,11 @@ enum CounterAction {
     case minusTapped
 }
 
-func counterReducer(_ state: AppState, action: CounterAction) -> AppState {
+func counterReducer(_ state: inout AppState, action: CounterAction) -> Void {
     switch action {
     case .minusTapped:
-        return AppState(
-            count: state.count - 1,
-            favoritePrimes: state.favoritePrimes,
-            activity: state.activity,
-            loggedInUser: state.loggedInUser
-        )
+        state.count -= 1
     case .plusTapped:
-        return AppState(
-            count: state.count + 1,
-            favoritePrimes: state.favoritePrimes,
-            activity: state.activity,
-            loggedInUser: state.loggedInUser
-        )
+        state.count += 1
     }
 }

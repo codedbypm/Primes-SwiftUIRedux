@@ -12,7 +12,7 @@ struct Primes: App {
     var store: Store<AppState, CounterAction>
 
     init() {
-        self.store = .init(state: .init(), reducer: counterReducer(_:action:))
+        self.store = Store(state: .init(), reducer: counterReducer(_:action:))
     }
     
     var body: some Scene {
