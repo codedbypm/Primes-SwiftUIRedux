@@ -13,13 +13,15 @@ struct CounterView: View {
     var body: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
-                Button(action: {}, label: {
-                    Text("-")
-                })
+                Button(
+                    action: { count -= 1 },
+                    label: { Text("-") }
+                )
                 Text("\(count)")
-                Button(action: {}, label: {
-                    Text("+")
-                })
+                Button(
+                    action: { count += 1 },
+                    label: { Text("+") }
+                )
             }
             Button(action: {}, label: {
                 Text("Is this prime?")
