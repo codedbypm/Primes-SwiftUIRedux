@@ -7,16 +7,17 @@ import SwiftUI
 
 struct FavoritePrimes: View {
     @ObservedObject
-    var appState: AppState
+    var store: Store
 
     var body: some View {
         List {
-            ForEach(appState.favoritePrimes, id: \.self) {
+            ForEach(store.state.favoritePrimes, id: \.self) {
                 Text("\($0)")
             }
             .onDelete { indexSet in
                 indexSet.forEach {
-                    appState.favoritePrimes.remove(at: $0)
+                    store.state.favoritePrimes.remove(at: $0)
+                    store.state.activity.append(.init(date: .init(), type: .remove))
                 }
             }
         }

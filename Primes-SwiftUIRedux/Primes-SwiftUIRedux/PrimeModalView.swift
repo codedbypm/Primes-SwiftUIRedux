@@ -8,29 +8,29 @@ import SwiftUI
 
 struct PrimeModalView: View {
     @ObservedObject
-    var appState: AppState
+    var store: Store
 
     var body: some View {
         VStack {
-            if isPrime(appState.count) {
-                Text("\(appState.count) is prime 🎉")
-                if appState.favoritePrimes.contains(appState.count) {
+            if isPrime(store.state.count) {
+                Text("\(store.state.count) is prime 🎉")
+                if store.state.favoritePrimes.contains(store.state.count) {
                     Button(action: {
-                        appState.favoritePrimes.removeAll(where: { $0 == appState.count })
-                        appState.activity.append(.init(date: .init(), type: .remove))
+                        store.state.favoritePrimes.removeAll(where: { $0 == store.state.count })
+                        store.state.activity.append(.init(date: .init(), type: .remove))
                     }) {
                         Text("Remove from favorite primes")
                     }
                 } else {
                     Button(action: {
-                        appState.favoritePrimes.append(appState.count)
-                        appState.activity.append(.init(date: .init(), type: .add))
+                        store.state.favoritePrimes.append(store.state.count)
+                        store.state.activity.append(.init(date: .init(), type: .add))
                     }) {
                         Text("Save to favorite primes")
                     }
                 }
             } else {
-                Text("\(appState.count) is not prime :(")
+                Text("\(store.state.count) is not prime :(")
             }
         }
     }
@@ -42,11 +42,5 @@ struct PrimeModalView: View {
             if value % i == 0 { return false }
         }
         return true
-    }
-}
-
-struct PrimeModalView_Previews: PreviewProvider {
-    static var previews: some View {
-        PrimeModalView(appState: .init())
     }
 }

@@ -9,20 +9,20 @@ import SwiftUI
 struct Primes: App {
     
     @ObservedObject
-    var appState: AppState
+    var store: Store
 
     init() {
-        self.appState = .init()
+        self.store = .init()
     }
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 List {
-                    NavigationLink(destination: CounterView(appState: appState)) {
+                    NavigationLink(destination: CounterView(store: store)) {
                         Text("Counter Demo")
                     }
-                    NavigationLink(destination: FavoritePrimes(appState: appState)) {
+                    NavigationLink(destination: FavoritePrimes(store: store)) {
                         Text("Favorite Primes")
                     }
                 }

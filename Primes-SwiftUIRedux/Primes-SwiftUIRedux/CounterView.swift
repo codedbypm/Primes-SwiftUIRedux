@@ -12,7 +12,7 @@ struct CounterView: View {
     var primesAPI: PrimesAPI
 
     @ObservedObject
-    var appState: AppState
+    var store: Store
 
     @State
     private var isPrimeModalShown = false
@@ -36,12 +36,12 @@ struct CounterView: View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 Button(
-                    action: { appState.count -= 1 },
+                    action: { store.state.count -= 1 },
                     label: { Text("-") }
                 )
-                Text("\(appState.count)")
+                Text("\(store.state.count)")
                 Button(
-                    action: { appState.count += 1 },
+                    action: { store.state.count += 1 },
                     label: { Text("+") }
                 )
             }
@@ -58,7 +58,7 @@ struct CounterView: View {
         .font(.title)
         .navigationTitle("Counter Demo")
         .sheet(isPresented: $isPrimeModalShown) {
-            PrimeModalView(appState: appState)
+            PrimeModalView(store: store)
         }
         .alert(isPresented: $didReceiveNthPrime) {
             Alert(
@@ -70,7 +70,7 @@ struct CounterView: View {
         .onChange(of: requestNthPrime) { _ in
             nthPrimeButtonDisabled = true
             nthPrimeCancellable?.cancel()
-            nthPrimeCancellable = nthPrime(appState.count)
+            nthPrimeCancellable = nthPrime(store.state.count)
                 .sink(
                     receiveCompletion: { _ in },
                     receiveValue: {
@@ -86,7 +86,7 @@ struct CounterView: View {
 
     func formatCount() -> String {
         formatter.numberStyle = .ordinal
-        return formatter.string(for: appState.count) ?? ""
+        return formatter.string(for: store.state.count) ?? ""
     }
 
     func nthPrime(_ value: Int) -> AnyPublisher<Int, Error> {

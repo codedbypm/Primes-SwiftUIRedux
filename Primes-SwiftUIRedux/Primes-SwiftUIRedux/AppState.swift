@@ -5,15 +5,21 @@
 
 import SwiftUI
 
-class AppState: ObservableObject {
+class Store: ObservableObject {
 
     @Published
+    var state: AppState
+
+    init() {
+        self.state = .init()
+    }
+}
+
+struct AppState {
     var count = 0
-
-    @Published
     var favoritePrimes: [Int] = []
-
     var activity: [Activity] = []
+    var loggedInUser: User? = nil
 }
 
 struct Activity {
@@ -24,4 +30,10 @@ struct Activity {
 enum FavoriteAction {
     case add
     case remove
+}
+
+struct User {
+    let id: Int
+    let name: String
+    let bio: String
 }
