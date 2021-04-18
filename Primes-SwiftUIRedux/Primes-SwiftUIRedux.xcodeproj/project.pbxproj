@@ -17,8 +17,7 @@
 		FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */; };
 		FD1BEDEE262B5355009E969A /* FavoritePrimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDED262B5355009E969A /* FavoritePrimes.swift */; };
 		FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDF1262B6552009E969A /* AppAction.swift */; };
-		FDB2A7A4262BD01900A97BC3 /* Counter Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDB2A7A3262BD01900A97BC3 /* Counter Lib */; };
-		FDB2A7A8262BD1EE00A97BC3 /* ComposableArchitecture Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDB2A7A7262BD1EE00A97BC3 /* ComposableArchitecture Lib */; };
+		FDA2B7E8262C1D7300D4F1C2 /* ComposableArchitecture Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +32,8 @@
 		FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalView.swift; sourceTree = "<group>"; };
 		FD1BEDED262B5355009E969A /* FavoritePrimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimes.swift; sourceTree = "<group>"; };
 		FD1BEDF1262B6552009E969A /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
+		FDA2B7DE262C1C8000D4F1C2 /* Counter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Counter; path = ../Packages/Counter; sourceTree = "<group>"; };
+		FDA2B7E0262C1CD700D4F1C2 /* ComposableArchitecture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ComposableArchitecture; path = ../Packages/ComposableArchitecture; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,9 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDB2A7A8262BD1EE00A97BC3 /* ComposableArchitecture Lib in Frameworks */,
-				FDB2A7A4262BD01900A97BC3 /* Counter Lib in Frameworks */,
 				FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */,
+				FDA2B7E8262C1D7300D4F1C2 /* ComposableArchitecture Lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,8 +52,11 @@
 		FD1BEDBB262B0760009E969A = {
 			isa = PBXGroup;
 			children = (
+				FDA2B7E0262C1CD700D4F1C2 /* ComposableArchitecture */,
+				FDA2B7DE262C1C8000D4F1C2 /* Counter */,
 				FD1BEDC6262B0760009E969A /* Primes-SwiftUIRedux */,
 				FD1BEDC5262B0760009E969A /* Products */,
+				FDA2B7E2262C1D0B00D4F1C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +93,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		FDA2B7E2262C1D0B00D4F1C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -108,8 +118,7 @@
 			name = "Primes-SwiftUIRedux";
 			packageProductDependencies = (
 				FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */,
-				FDB2A7A3262BD01900A97BC3 /* Counter Lib */,
-				FDB2A7A7262BD1EE00A97BC3 /* ComposableArchitecture Lib */,
+				FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */,
 			);
 			productName = "Primes-SwiftUIRedux";
 			productReference = FD1BEDC4262B0760009E969A /* Primes-SwiftUIRedux.app */;
@@ -140,8 +149,6 @@
 			mainGroup = FD1BEDBB262B0760009E969A;
 			packageReferences = (
 				FD1BEDD7262B0791009E969A /* XCRemoteSwiftPackageReference "SwiftUIRedux" */,
-				FDB2A7A2262BD01900A97BC3 /* XCRemoteSwiftPackageReference "Counter" */,
-				FDB2A7A6262BD1EE00A97BC3 /* XCRemoteSwiftPackageReference "ComposableArchitecture" */,
 			);
 			productRefGroup = FD1BEDC5262B0760009E969A /* Products */;
 			projectDirPath = "";
@@ -374,22 +381,6 @@
 				kind = branch;
 			};
 		};
-		FDB2A7A2262BD01900A97BC3 /* XCRemoteSwiftPackageReference "Counter" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/paolodev/Projects/Primes/Counter";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		FDB2A7A6262BD1EE00A97BC3 /* XCRemoteSwiftPackageReference "ComposableArchitecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/paolodev/Projects/Primes/ComposableArchitecture";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -398,14 +389,8 @@
 			package = FD1BEDD7262B0791009E969A /* XCRemoteSwiftPackageReference "SwiftUIRedux" */;
 			productName = "SwiftUIRedux Lib";
 		};
-		FDB2A7A3262BD01900A97BC3 /* Counter Lib */ = {
+		FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FDB2A7A2262BD01900A97BC3 /* XCRemoteSwiftPackageReference "Counter" */;
-			productName = "Counter Lib";
-		};
-		FDB2A7A7262BD1EE00A97BC3 /* ComposableArchitecture Lib */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FDB2A7A6262BD1EE00A97BC3 /* XCRemoteSwiftPackageReference "ComposableArchitecture" */;
 			productName = "ComposableArchitecture Lib";
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -2,24 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "ComposableArchitecture",
-        "repositoryURL": "/Users/paolodev/Projects/Primes/ComposableArchitecture",
-        "state": {
-          "branch": "main",
-          "revision": "893d1eed6289d753bc219a0eb2e34df2bdc76c14",
-          "version": null
-        }
-      },
-      {
-        "package": "Counter",
-        "repositoryURL": "/Users/paolodev/Projects/Primes/Counter",
-        "state": {
-          "branch": "main",
-          "revision": "1f458ff48ed5ffe53f7e3ad0d34245c2af2a6e13",
-          "version": null
-        }
-      },
-      {
         "package": "SwiftUI Redux",
         "repositoryURL": "git@github.com:codedbypm/SwiftUIRedux.git",
         "state": {
