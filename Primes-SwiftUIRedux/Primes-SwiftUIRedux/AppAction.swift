@@ -3,24 +3,12 @@
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import Counter
+import FavoritePrimes
 import Foundation
-
-enum CounterAction {
-    case plusTapped
-    case minusTapped
-}
-
-enum PrimeModalAction {
-    case addFavorite
-    case removeFavorite
-}
-
-enum FavoritePrimesAction {
-    case deleteFavoritePrimes(at: IndexSet)
-}
+import PrimeModal
 
 enum AppAction {
-
     case counter(CounterAction)
     case primeModal(PrimeModalAction)
     case favoritePrimes(FavoritePrimesAction)
@@ -62,35 +50,6 @@ extension AppAction {
     }
 }
 
-func counterReducer(_ state: inout Int, action: CounterAction) -> Void {
-    switch action {
-    case .minusTapped:
-        state -= 1
-
-    case .plusTapped:
-        state += 1
-    }
-}
-
-func primeModalReducer(_ state: inout AppState, action: PrimeModalAction) -> Void {
-    switch action {
-    case .addFavorite:
-        state.favoritePrimes.append(state.count)
-
-    case .removeFavorite:
-        state.favoritePrimes.removeAll(where: { $0 == state.count })
-    }
-}
-
-func favoritePrimesReducer(_ state: inout [Int], action: FavoritePrimesAction) -> Void {
-    switch action {
-    case .deleteFavoritePrimes(at: let set):
-        set.forEach {
-            state.remove(at: $0)
-        }
-    }
-}
-
 func activityFeedReducer(
     _ reducer: @escaping (inout AppState, AppAction) -> Void
 ) -> (inout AppState, AppAction) -> Void {
@@ -112,17 +71,5 @@ func activityFeedReducer(
             }
         }
         reducer(&state, action)
-    }
-}
-
-func loggingReducer<State, Action>(
-    _ reducer: @escaping (inout State, Action) -> Void
-) -> (inout State, Action) -> Void {
-    return { state, action in
-        reducer(&state, action)
-        print("Action: \(action)")
-        print("Value:")
-        dump(state)
-        print("------")
     }
 }

@@ -12,11 +12,11 @@
 		FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */; };
 		FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDDC262B07BA009E969A /* Primes.swift */; };
 		FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE3262B0D0D009E969A /* AppState.swift */; };
-		FD1BEDEE262B5355009E969A /* FavoritePrimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDED262B5355009E969A /* FavoritePrimes.swift */; };
 		FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDF1262B6552009E969A /* AppAction.swift */; };
 		FDA2B7E8262C1D7300D4F1C2 /* ComposableArchitecture Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */; };
 		FDA2B7EC262C1F9B00D4F1C2 /* Counter Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7EB262C1F9B00D4F1C2 /* Counter Lib */; };
-		FDA2B7F2262C207300D4F1C2 /* PrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA2B7F1262C207300D4F1C2 /* PrimeModalView.swift */; };
+		FDA2B7F9262C2ADC00D4F1C2 /* PrimeModal Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7F8262C2ADC00D4F1C2 /* PrimeModal Lib */; };
+		FDA2B7FF262C3DEA00D4F1C2 /* FavoritePrimes Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7FE262C3DEA00D4F1C2 /* FavoritePrimes Lib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +26,11 @@
 		FD1BEDD0262B0760009E969A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD1BEDDC262B07BA009E969A /* Primes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primes.swift; sourceTree = "<group>"; };
 		FD1BEDE3262B0D0D009E969A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		FD1BEDED262B5355009E969A /* FavoritePrimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimes.swift; sourceTree = "<group>"; };
 		FD1BEDF1262B6552009E969A /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		FDA2B7DE262C1C8000D4F1C2 /* Counter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Counter; path = ../Packages/Counter; sourceTree = "<group>"; };
 		FDA2B7E0262C1CD700D4F1C2 /* ComposableArchitecture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ComposableArchitecture; path = ../Packages/ComposableArchitecture; sourceTree = "<group>"; };
-		FDA2B7F1262C207300D4F1C2 /* PrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalView.swift; sourceTree = "<group>"; };
+		FDA2B7F5262C2AA800D4F1C2 /* PrimeModal */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PrimeModal; path = ../Packages/PrimeModal; sourceTree = "<group>"; };
+		FDA2B7FC262C3DA900D4F1C2 /* FavoritePrimes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FavoritePrimes; path = ../Packages/FavoritePrimes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,8 +39,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */,
+				FDA2B7FF262C3DEA00D4F1C2 /* FavoritePrimes Lib in Frameworks */,
 				FDA2B7E8262C1D7300D4F1C2 /* ComposableArchitecture Lib in Frameworks */,
 				FDA2B7EC262C1F9B00D4F1C2 /* Counter Lib in Frameworks */,
+				FDA2B7F9262C2ADC00D4F1C2 /* PrimeModal Lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +52,8 @@
 		FD1BEDBB262B0760009E969A = {
 			isa = PBXGroup;
 			children = (
+				FDA2B7FC262C3DA900D4F1C2 /* FavoritePrimes */,
+				FDA2B7F5262C2AA800D4F1C2 /* PrimeModal */,
 				FDA2B7E0262C1CD700D4F1C2 /* ComposableArchitecture */,
 				FDA2B7DE262C1C8000D4F1C2 /* Counter */,
 				FD1BEDC6262B0760009E969A /* Primes-SwiftUIRedux */,
@@ -70,10 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				FD1BEDE3262B0D0D009E969A /* AppState.swift */,
-				FDA2B7F1262C207300D4F1C2 /* PrimeModalView.swift */,
 				FD1BEDF1262B6552009E969A /* AppAction.swift */,
 				FD1BEDDC262B07BA009E969A /* Primes.swift */,
-				FD1BEDED262B5355009E969A /* FavoritePrimes.swift */,
 				FD1BEDCB262B0760009E969A /* Assets.xcassets */,
 				FD1BEDD0262B0760009E969A /* Info.plist */,
 				FD1BEDCD262B0760009E969A /* Preview Content */,
@@ -116,6 +118,8 @@
 				FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */,
 				FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */,
 				FDA2B7EB262C1F9B00D4F1C2 /* Counter Lib */,
+				FDA2B7F8262C2ADC00D4F1C2 /* PrimeModal Lib */,
+				FDA2B7FE262C3DEA00D4F1C2 /* FavoritePrimes Lib */,
 			);
 			productName = "Primes-SwiftUIRedux";
 			productReference = FD1BEDC4262B0760009E969A /* Primes-SwiftUIRedux.app */;
@@ -173,10 +177,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDA2B7F2262C207300D4F1C2 /* PrimeModalView.swift in Sources */,
 				FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */,
 				FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */,
-				FD1BEDEE262B5355009E969A /* FavoritePrimes.swift in Sources */,
 				FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +393,14 @@
 		FDA2B7EB262C1F9B00D4F1C2 /* Counter Lib */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "Counter Lib";
+		};
+		FDA2B7F8262C2ADC00D4F1C2 /* PrimeModal Lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "PrimeModal Lib";
+		};
+		FDA2B7FE262C3DEA00D4F1C2 /* FavoritePrimes Lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "FavoritePrimes Lib";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

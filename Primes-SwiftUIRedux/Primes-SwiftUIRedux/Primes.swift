@@ -5,6 +5,8 @@
 
 import ComposableArchitecture
 import Counter
+import FavoritePrimes
+import PrimeModal
 import SwiftUI
 
 @main
@@ -17,8 +19,8 @@ struct Primes: App {
 
     private let appReducer: (inout AppState, AppAction) -> Void = combine(
         pullback(counterReducer, alongValue: \.count, alongAction: \.counter),
-        pullback(primeModalReducer, alongValue: \.self, alongAction: \.primeModal),
-        pullback(favoritePrimesReducer, alongValue: \.favoritePrimes, alongAction: \.favoritePrimes)
+        pullback(primeModalReducer, alongValue: \.primeModalState, alongAction: \.primeModal),
+        pullback(favoritePrimesReducer, alongValue: \.favoritePrimesState, alongAction: \.favoritePrimes)
     )
 
     init() {
@@ -29,7 +31,7 @@ struct Primes: App {
         WindowGroup {
             NavigationView {
                 List {
-                    NavigationLink(destination: CounterView(state: state.count)) {
+                    NavigationLink(destination: CounterView(store: store)) {
                         Text("Counter Demo")
                     }
                     NavigationLink(destination: FavoritePrimesView(store: store)) {

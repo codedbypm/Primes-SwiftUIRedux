@@ -38,3 +38,15 @@ public func combine<State, Action>(
         }
     }
 }
+
+public func loggingReducer<State, Action>(
+    _ reducer: @escaping (inout State, Action) -> Void
+) -> (inout State, Action) -> Void {
+    return { state, action in
+        reducer(&state, action)
+        print("Action: \(action)")
+        print("Value:")
+        dump(state)
+        print("------")
+    }
+}

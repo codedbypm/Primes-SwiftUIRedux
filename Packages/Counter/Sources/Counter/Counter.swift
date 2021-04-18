@@ -10,7 +10,7 @@ public enum CounterAction {
     case minusTapped
 }
 
-func counterReducer(_ state: inout Int, action: CounterAction) -> Void {
+public func counterReducer(_ state: inout Int, action: CounterAction) -> Void {
     switch action {
     case .minusTapped:
         state -= 1

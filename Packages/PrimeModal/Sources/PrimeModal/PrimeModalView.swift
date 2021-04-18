@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PrimeModalView: View {
     @ObservedObject
-    var store: Store<AppState, AppAction>
+    var store: Store<PrimeModalState, PrimeModalAction>
 
     var body: some View {
         VStack(spacing: 20.0) {
@@ -17,13 +17,13 @@ struct PrimeModalView: View {
                 Text("\(store.state.count) is prime 🎉")
                 if store.state.favoritePrimes.contains(store.state.count) {
                     Button(action: {
-                        store.send(.primeModal(.removeFavorite))
+                        store.send(.removeFavorite)
                     }) {
                         Text("Remove from favorite primes")
                     }
                 } else {
                     Button(action: {
-                        store.send(.primeModal(.addFavorite))
+                        store.send(.addFavorite)
                     }) {
                         Text("Save to favorite primes")
                     }

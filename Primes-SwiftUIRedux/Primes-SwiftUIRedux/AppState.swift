@@ -3,6 +3,8 @@
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import FavoritePrimes
+import PrimeModal
 import SwiftUI
 
 struct AppState {
@@ -10,6 +12,21 @@ struct AppState {
     var favoritePrimes: [Int] = []
     var activities: [Activity] = []
     var loggedInUser: User? = nil
+}
+
+extension AppState {
+    var favoritePrimesState: FavoritePrimesState {
+        get { .init(favoritePrimes: favoritePrimes) }
+        set { favoritePrimes = newValue.favoritePrimes }
+    }
+
+    var primeModalState: PrimeModalState {
+        get { .init(count: count, favoritePrimes: favoritePrimes) }
+        set {
+            count = newValue.count
+            favoritePrimes = newValue.favoritePrimes
+        }
+    }
 }
 
 struct Activity {

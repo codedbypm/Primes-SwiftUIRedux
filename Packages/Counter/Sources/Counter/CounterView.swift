@@ -28,8 +28,8 @@ public struct CounterView: View {
     @State
     private var nthPrimeCancellable: AnyCancellable?
 
-    public init(state: Int) {
-        self.store = .init(state: state, reducer: counterReducer)
+    public init(store: Store<Int, CounterAction>) {
+        self.store = store
     }
 
     public var body: some View {
