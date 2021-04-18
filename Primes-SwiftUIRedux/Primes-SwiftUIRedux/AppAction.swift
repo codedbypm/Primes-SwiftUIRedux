@@ -5,20 +5,21 @@
 
 import Foundation
 
+enum CounterAction {
+    case plusTapped
+    case minusTapped
+}
+
+enum PrimeModal {
+    case addFavorite
+    case removeFavorite
+}
+
+enum FavoritePrimes {
+    case deleteFavoritePrimes(at: IndexSet)
+}
+
 enum AppAction {
-    enum CounterAction {
-        case plusTapped
-        case minusTapped
-    }
-
-    enum PrimeModal {
-        case addFavorite
-        case removeFavorite
-    }
-
-    enum FavoritePrimes {
-        case deleteFavoritePrimes(at: IndexSet)
-    }
 
     case counter(CounterAction)
     case primeModal(PrimeModal)
@@ -34,16 +35,13 @@ func pullback<LocalValue, GlobalValue, Action>(
     }
 }
 
-func counterReducer(_ state: inout Int, action: AppAction) -> Void {
+func counterReducer(_ state: inout Int, action: CounterAction) -> Void {
     switch action {
-    case .counter(.minusTapped):
+    case .minusTapped:
         state -= 1
 
-    case .counter(.plusTapped):
+    case .plusTapped:
         state += 1
-
-    default:
-        break
     }
 }
 
