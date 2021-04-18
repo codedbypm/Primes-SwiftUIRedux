@@ -14,11 +14,11 @@ struct Primes: App {
     private let appReducer: (inout AppState, AppAction) -> Void = combine(
         pullback(counterReducer, alongValue: \.count, alongAction: \.counter),
         pullback(primeModalReducer, alongValue: \.self, alongAction: \.primeModal),
-        pullback(favoritePrimesReducer, alongValue: \.favoritePrimesState, alongAction: \.favoritePrimes)
+        pullback(favoritePrimesReducer, alongValue: \.favoritePrimes, alongAction: \.favoritePrimes)
     )
 
     init() {
-        self.store = Store(state: .init(), reducer: appReducer)
+        self.store = Store(state: .init(), reducer: activityFeedReducer(appReducer))
     }
     
     var body: some Scene {

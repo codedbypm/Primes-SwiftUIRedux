@@ -95,14 +95,36 @@ func primeModalReducer(_ state: inout AppState, action: PrimeModalAction) -> Voi
     }
 }
 
-func favoritePrimesReducer(_ state: inout FavoritePrimeState, action: FavoritePrimesAction) -> Void {
+func favoritePrimesReducer(_ state: inout [Int], action: FavoritePrimesAction) -> Void {
     switch action {
     case .deleteFavoritePrimes(at: let set):
         set.forEach {
-            let value = state.favoritePrimes[$0]
-            state.favoritePrimes.remove(at: $0)
-            state.activities.append(.init(date: .init(), type: .remove(value)))
+            state.remove(at: $0)
         }
+    }
+}
+
+func activityFeedReducer(
+    _ reducer: @escaping (inout AppState, AppAction) -> Void
+) -> (inout AppState, AppAction) -> Void {
+    return { state, action in
+        switch action {
+        case .counter:
+            break
+
+        case .primeModal(.addFavorite):
+            state.activities.append(.init(date: .init(), type: .add(state.count)))
+
+        case .primeModal(.removeFavorite):
+            state.activities.append(.init(date: .init(), type: .remove(state.count)))
+
+        case let .favoritePrimes(.deleteFavoritePrimes(at: indexSet)):
+            indexSet.forEach {
+                let value = state.favoritePrimes[$0]
+                state.activities.append(.init(date: .init(), type: .remove(value)))
+            }
+        }
+        reducer(&state, action)
     }
 }
 
