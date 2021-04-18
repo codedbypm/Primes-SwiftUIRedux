@@ -5,20 +5,27 @@ import PackageDescription
 
 let package = Package(
     name: "Counter",
+    platforms: [
+        .iOS(.v14),
+        .macOS(.v11)
+    ],
     products: [
         .library(
-            name: "Counter",
+            name: "Counter Lib",
             targets: ["Counter"]),
     ],
     dependencies: [
+        .package(path: "../ComposableArchitecture")
     ],
     targets: [
         .target(
             name: "Counter",
-            dependencies: []),
-        .testTarget(
-            name: "CounterTests",
-            dependencies: ["Counter"]
-        ),
+            dependencies: [
+                .product(
+                    name: "ComposableArchitecture Lib",
+                    package: "ComposableArchitecture"
+                )
+            ]
+        )
     ]
 )

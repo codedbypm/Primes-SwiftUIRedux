@@ -11,13 +11,12 @@
 		FD1BEDCF262B0760009E969A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD1BEDCE262B0760009E969A /* Preview Assets.xcassets */; };
 		FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */; };
 		FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDDC262B07BA009E969A /* Primes.swift */; };
-		FD1BEDE1262B0988009E969A /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE0262B0988009E969A /* CounterView.swift */; };
 		FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE3262B0D0D009E969A /* AppState.swift */; };
-		FD1BEDE7262B0EF4009E969A /* PrimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */; };
-		FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */; };
 		FD1BEDEE262B5355009E969A /* FavoritePrimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDED262B5355009E969A /* FavoritePrimes.swift */; };
 		FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BEDF1262B6552009E969A /* AppAction.swift */; };
 		FDA2B7E8262C1D7300D4F1C2 /* ComposableArchitecture Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */; };
+		FDA2B7EC262C1F9B00D4F1C2 /* Counter Lib in Frameworks */ = {isa = PBXBuildFile; productRef = FDA2B7EB262C1F9B00D4F1C2 /* Counter Lib */; };
+		FDA2B7F2262C207300D4F1C2 /* PrimeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA2B7F1262C207300D4F1C2 /* PrimeModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,14 +25,12 @@
 		FD1BEDCE262B0760009E969A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD1BEDD0262B0760009E969A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD1BEDDC262B07BA009E969A /* Primes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primes.swift; sourceTree = "<group>"; };
-		FD1BEDE0262B0988009E969A /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		FD1BEDE3262B0D0D009E969A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimesAPI.swift; sourceTree = "<group>"; };
-		FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalView.swift; sourceTree = "<group>"; };
 		FD1BEDED262B5355009E969A /* FavoritePrimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimes.swift; sourceTree = "<group>"; };
 		FD1BEDF1262B6552009E969A /* AppAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAction.swift; sourceTree = "<group>"; };
 		FDA2B7DE262C1C8000D4F1C2 /* Counter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Counter; path = ../Packages/Counter; sourceTree = "<group>"; };
 		FDA2B7E0262C1CD700D4F1C2 /* ComposableArchitecture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ComposableArchitecture; path = ../Packages/ComposableArchitecture; sourceTree = "<group>"; };
+		FDA2B7F1262C207300D4F1C2 /* PrimeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +40,7 @@
 			files = (
 				FD1BEDD9262B0791009E969A /* SwiftUIRedux Lib in Frameworks */,
 				FDA2B7E8262C1D7300D4F1C2 /* ComposableArchitecture Lib in Frameworks */,
+				FDA2B7EC262C1F9B00D4F1C2 /* Counter Lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,11 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				FD1BEDE3262B0D0D009E969A /* AppState.swift */,
+				FDA2B7F1262C207300D4F1C2 /* PrimeModalView.swift */,
 				FD1BEDF1262B6552009E969A /* AppAction.swift */,
-				FD1BEDE9262B0FBA009E969A /* PrimeModalView.swift */,
 				FD1BEDDC262B07BA009E969A /* Primes.swift */,
-				FD1BEDE0262B0988009E969A /* CounterView.swift */,
-				FD1BEDE6262B0EF4009E969A /* PrimesAPI.swift */,
 				FD1BEDED262B5355009E969A /* FavoritePrimes.swift */,
 				FD1BEDCB262B0760009E969A /* Assets.xcassets */,
 				FD1BEDD0262B0760009E969A /* Info.plist */,
@@ -119,6 +115,7 @@
 			packageProductDependencies = (
 				FD1BEDD8262B0791009E969A /* SwiftUIRedux Lib */,
 				FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */,
+				FDA2B7EB262C1F9B00D4F1C2 /* Counter Lib */,
 			);
 			productName = "Primes-SwiftUIRedux";
 			productReference = FD1BEDC4262B0760009E969A /* Primes-SwiftUIRedux.app */;
@@ -176,13 +173,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDA2B7F2262C207300D4F1C2 /* PrimeModalView.swift in Sources */,
 				FD1BEDF2262B6552009E969A /* AppAction.swift in Sources */,
-				FD1BEDEA262B0FBA009E969A /* PrimeModalView.swift in Sources */,
-				FD1BEDE7262B0EF4009E969A /* PrimesAPI.swift in Sources */,
 				FD1BEDE4262B0D0D009E969A /* AppState.swift in Sources */,
 				FD1BEDEE262B5355009E969A /* FavoritePrimes.swift in Sources */,
 				FD1BEDDD262B07BA009E969A /* Primes.swift in Sources */,
-				FD1BEDE1262B0988009E969A /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +387,10 @@
 		FDA2B7E7262C1D7300D4F1C2 /* ComposableArchitecture Lib */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "ComposableArchitecture Lib";
+		};
+		FDA2B7EB262C1F9B00D4F1C2 /* Counter Lib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "Counter Lib";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

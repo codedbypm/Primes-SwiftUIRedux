@@ -4,6 +4,7 @@
 //
 
 import ComposableArchitecture
+import Counter
 import SwiftUI
 
 @main
@@ -11,6 +12,8 @@ struct Primes: App {
     
     @ObservedObject
     var store: Store<AppState, AppAction>
+
+    private var state = AppState()
 
     private let appReducer: (inout AppState, AppAction) -> Void = combine(
         pullback(counterReducer, alongValue: \.count, alongAction: \.counter),
@@ -26,7 +29,7 @@ struct Primes: App {
         WindowGroup {
             NavigationView {
                 List {
-                    NavigationLink(destination: CounterView(store: store)) {
+                    NavigationLink(destination: CounterView(state: state.count)) {
                         Text("Counter Demo")
                     }
                     NavigationLink(destination: FavoritePrimesView(store: store)) {

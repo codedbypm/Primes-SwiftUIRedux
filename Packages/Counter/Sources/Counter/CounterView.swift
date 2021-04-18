@@ -1,19 +1,14 @@
-//
-// Project: Primes-SwiftUIRedux 
-// Copyright © 2021 codedby.pm. All rights reserved.
-//
-
 import Combine
 import ComposableArchitecture
 import SwiftUI
 
-struct CounterView: View {
+public struct CounterView: View {
 
     @EnvironmentObject
     var primesAPI: PrimesAPI
 
     @ObservedObject
-    var store: Store<AppState, AppAction>
+    var store: Store<Int, CounterAction>
 
     @State
     private var isPrimeModalShown = false
@@ -33,16 +28,20 @@ struct CounterView: View {
     @State
     private var nthPrimeCancellable: AnyCancellable?
 
-    var body: some View {
+    public init(state: Int) {
+        self.store = .init(state: state, reducer: counterReducer)
+    }
+
+    public var body: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 Button(
-                    action: { store.send(.counter(.minusTapped)) },
+                    action: { store.send(.minusTapped) },
                     label: { Text("-") }
                 )
-                Text("\(store.state.count)")
+                Text("\(store.state)")
                 Button(
-                    action: { store.send(.counter(.plusTapped)) },
+                    action: { store.send(.plusTapped) },
                     label: { Text("+") }
                 )
             }
@@ -58,9 +57,9 @@ struct CounterView: View {
         }
         .font(.title)
         .navigationTitle("Counter Demo")
-        .sheet(isPresented: $isPrimeModalShown) {
-            PrimeModalView(store: store)
-        }
+//        .sheet(isPresented: $isPrimeModalShown) {
+//            PrimeModalView(store: store)
+//        }
         .alert(isPresented: $didReceiveNthPrime) {
             Alert(
                 title: Text("What is the \(formatCount()) prime?"),
@@ -71,7 +70,7 @@ struct CounterView: View {
         .onChange(of: requestNthPrime) { _ in
             nthPrimeButtonDisabled = true
             nthPrimeCancellable?.cancel()
-            nthPrimeCancellable = nthPrime(store.state.count)
+            nthPrimeCancellable = nthPrime(store.state)
                 .sink(
                     receiveCompletion: { _ in },
                     receiveValue: {
@@ -87,7 +86,7 @@ struct CounterView: View {
 
     func formatCount() -> String {
         formatter.numberStyle = .ordinal
-        return formatter.string(for: store.state.count) ?? ""
+        return formatter.string(for: store.state) ?? ""
     }
 
     func nthPrime(_ value: Int) -> AnyPublisher<Int, Error> {

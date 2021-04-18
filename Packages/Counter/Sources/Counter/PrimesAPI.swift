@@ -24,8 +24,10 @@ struct WolframAlphaResult: Decodable {
     }
 }
 
-class PrimesAPI: ObservableObject {
+public final class PrimesAPI: ObservableObject {
 
+    public init() {}
+    
     func nthPrime(_ n: Int) -> AnyPublisher<Int, Error> {
         return wolframAlpha(query: "prime \(n)")
             .compactMap { $0.queryresult.pods.first { $0.scanner == "Identity" && $0.primary == .some(true) } }
