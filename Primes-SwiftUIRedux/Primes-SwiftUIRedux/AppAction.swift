@@ -62,17 +62,6 @@ extension AppAction {
     }
 }
 
-func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
-    _ reducer: @escaping (inout LocalValue, LocalAction) -> Void,
-    alongValue: WritableKeyPath<GlobalValue, LocalValue>,
-    alongAction: WritableKeyPath<GlobalAction, LocalAction?>
-) -> (inout GlobalValue, GlobalAction) -> Void {
-    return { globalValue, globalAction in
-        guard let localAction = globalAction[keyPath: alongAction] else { return }
-        reducer(&globalValue[keyPath: alongValue], localAction)
-    }
-}
-
 func counterReducer(_ state: inout Int, action: CounterAction) -> Void {
     switch action {
     case .minusTapped:
@@ -87,11 +76,9 @@ func primeModalReducer(_ state: inout AppState, action: PrimeModalAction) -> Voi
     switch action {
     case .addFavorite:
         state.favoritePrimes.append(state.count)
-        state.activities.append(.init(date: .init(), type: .add(state.count)))
 
     case .removeFavorite:
         state.favoritePrimes.removeAll(where: { $0 == state.count })
-        state.activities.append(.init(date: .init(), type: .remove(state.count)))
     }
 }
 
@@ -128,13 +115,14 @@ func activityFeedReducer(
     }
 }
 
-func combine<State, Action>(
-    _ reducers: (inout State, Action) -> Void...
+func loggingReducer<State, Action>(
+    _ reducer: @escaping (inout State, Action) -> Void
 ) -> (inout State, Action) -> Void {
-
-    return { value, action in
-        for reducer in reducers {
-            reducer(&value, action)
-        }
+    return { state, action in
+        reducer(&state, action)
+        print("Action: \(action)")
+        print("Value:")
+        dump(state)
+        print("------")
     }
 }

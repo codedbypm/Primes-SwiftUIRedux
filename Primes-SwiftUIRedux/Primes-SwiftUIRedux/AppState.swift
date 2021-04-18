@@ -5,23 +5,6 @@
 
 import SwiftUI
 
-final class Store<State, Action>: ObservableObject {
-
-    @Published
-    var state: State
-
-    let reducer: (inout State, Action) -> Void
-
-    init(state: State, reducer: @escaping (inout State, Action) -> Void) {
-        self.state = state
-        self.reducer = reducer
-    }
-
-    func send(_ action: Action) {
-        reducer(&state, action)
-    }
-}
-
 struct AppState {
     var count = 0
     var favoritePrimes: [Int] = []

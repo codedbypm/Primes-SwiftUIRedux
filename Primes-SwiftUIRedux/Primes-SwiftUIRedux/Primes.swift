@@ -3,6 +3,7 @@
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import ComposableArchitecture
 import SwiftUI
 
 @main
@@ -18,7 +19,7 @@ struct Primes: App {
     )
 
     init() {
-        self.store = Store(state: .init(), reducer: activityFeedReducer(appReducer))
+        self.store = Store(state: .init(), reducer: loggingReducer(activityFeedReducer(appReducer)))
     }
     
     var body: some Scene {
