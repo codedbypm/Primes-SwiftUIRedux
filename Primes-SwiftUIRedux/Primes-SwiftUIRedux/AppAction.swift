@@ -10,20 +10,20 @@ enum CounterAction {
     case minusTapped
 }
 
-enum PrimeModal {
+enum PrimeModalAction {
     case addFavorite
     case removeFavorite
 }
 
-enum FavoritePrimes {
+enum FavoritePrimesAction {
     case deleteFavoritePrimes(at: IndexSet)
 }
 
 enum AppAction {
 
     case counter(CounterAction)
-    case primeModal(PrimeModal)
-    case favoritePrimes(FavoritePrimes)
+    case primeModal(PrimeModalAction)
+    case favoritePrimes(FavoritePrimesAction)
 }
 
 func pullback<LocalValue, GlobalValue, Action>(
