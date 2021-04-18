@@ -6,6 +6,7 @@ public final class Store<State, Action>: ObservableObject {
     public private(set) var state: State
 
     private let reducer: (inout State, Action) -> Void
+    private var cancellables: [AnyCancellable] = []
 
     public init(state: State, reducer: @escaping (inout State, Action) -> Void) {
         self.state = state
@@ -14,6 +15,23 @@ public final class Store<State, Action>: ObservableObject {
 
     public func send(_ action: Action) {
         reducer(&state, action)
+    }
+
+    public func view<LocalValue>(
+        on valueKeypath: WritableKeyPath<State, LocalValue>
+    ) -> Store<LocalValue, Action> {
+        let localStore = Store<LocalValue, Action>(
+            state: state[keyPath: valueKeypath],
+            reducer: { localState, action in
+                self.send(action)
+                localState = self.state[keyPath: valueKeypath]
+            }
+        )
+        let cancellable = $state.sink { [weak localStore] globalState in
+            localStore?.state = globalState[keyPath: valueKeypath]
+        }
+        localStore.cancellables.append(cancellable)
+        return localStore
     }
 }
 
