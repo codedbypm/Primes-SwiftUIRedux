@@ -1,5 +1,6 @@
 import Combine
 import ComposableArchitecture
+import PrimeModal
 import SwiftUI
 
 public struct CounterView: View {
@@ -8,7 +9,7 @@ public struct CounterView: View {
     var primesAPI: PrimesAPI
 
     @ObservedObject
-    var store: Store<Int, CounterAction>
+    var store: Store<CounterViewState, CounterViewAction>
 
     @State
     private var isPrimeModalShown = false
@@ -28,7 +29,7 @@ public struct CounterView: View {
     @State
     private var nthPrimeCancellable: AnyCancellable?
 
-    public init(store: Store<Int, CounterAction>) {
+    public init(store: Store<CounterViewState, CounterViewAction>) {
         self.store = store
     }
 
@@ -36,12 +37,12 @@ public struct CounterView: View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 Button(
-                    action: { store.send(.minusTapped) },
+                    action: { store.send(.counter(.minusTapped)) },
                     label: { Text("-") }
                 )
-                Text("\(store.state)")
+                Text("\(store.state.count)")
                 Button(
-                    action: { store.send(.plusTapped) },
+                    action: { store.send(.counter(.plusTapped)) },
                     label: { Text("+") }
                 )
             }
@@ -57,9 +58,16 @@ public struct CounterView: View {
         }
         .font(.title)
         .navigationTitle("Counter Demo")
-//        .sheet(isPresented: $isPrimeModalShown) {
-//            PrimeModalView(store: store)
-//        }
+        .sheet(isPresented: $isPrimeModalShown) {
+            PrimeModalView(
+                store: store.view(
+                    toState: { PrimeModalState(count: $0.count, favoritePrimes: $0.favoritePrimes) },
+                    fromAction: { primeModalAction in
+                        .primeModal(primeModalAction)
+                    }
+                )
+            )
+        }
         .alert(isPresented: $didReceiveNthPrime) {
             Alert(
                 title: Text("What is the \(formatCount()) prime?"),
@@ -70,7 +78,7 @@ public struct CounterView: View {
         .onChange(of: requestNthPrime) { _ in
             nthPrimeButtonDisabled = true
             nthPrimeCancellable?.cancel()
-            nthPrimeCancellable = nthPrime(store.state)
+            nthPrimeCancellable = nthPrime(store.state.count)
                 .sink(
                     receiveCompletion: { _ in },
                     receiveValue: {
@@ -86,7 +94,7 @@ public struct CounterView: View {
 
     func formatCount() -> String {
         formatter.numberStyle = .ordinal
-        return formatter.string(for: store.state) ?? ""
+        return formatter.string(for: store.state.count) ?? ""
     }
 
     func nthPrime(_ value: Int) -> AnyPublisher<Int, Error> {

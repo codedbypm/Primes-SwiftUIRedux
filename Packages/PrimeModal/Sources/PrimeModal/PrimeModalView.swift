@@ -7,11 +7,11 @@ import Combine
 import ComposableArchitecture
 import SwiftUI
 
-struct PrimeModalView: View {
+public struct PrimeModalView: View {
     @ObservedObject
     var store: Store<PrimeModalState, PrimeModalAction>
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 20.0) {
             if isPrime(store.state.count) {
                 Text("\(store.state.count) is prime 🎉")
@@ -32,6 +32,10 @@ struct PrimeModalView: View {
                 Text("\(store.state.count) is not prime :(")
             }
         }
+    }
+
+    public init(store: Store<PrimeModalState, PrimeModalAction>) {
+        self.store = store
     }
 
     func isPrime(_ value: Int) -> Bool {

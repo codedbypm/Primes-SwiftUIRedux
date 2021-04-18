@@ -18,7 +18,7 @@ struct Primes: App {
     private var state = AppState()
 
     private let appReducer: (inout AppState, AppAction) -> Void = combine(
-        pullback(counterReducer, alongValue: \.count, alongAction: \.counter),
+        pullback(counterReducer, alongValue: \.counterState, alongAction: \.counter),
         pullback(primeModalReducer, alongValue: \.primeModalState, alongAction: \.primeModal),
         pullback(favoritePrimesReducer, alongValue: \.favoritePrimesState, alongAction: \.favoritePrimes)
     )
@@ -34,9 +34,14 @@ struct Primes: App {
                     NavigationLink(
                         destination: CounterView(
                             store: store.view(
-                                toState: \.count,
+                                toState: \.counterState,
                                 fromAction: { counterAction -> AppAction in
-                                    .counter(counterAction)
+                                    switch counterAction {
+                                    case .counter(let action):
+                                        return .counter(action)
+                                    case .primeModal(let action):
+                                        return .primeModal(action)
+                                    }
                                 }
                             )
                         )

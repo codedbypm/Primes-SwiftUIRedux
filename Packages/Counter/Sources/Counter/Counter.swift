@@ -4,18 +4,34 @@
 //
 
 import Foundation
+import PrimeModal
+
+public struct CounterViewState {
+    public var count: Int
+    public var favoritePrimes: [Int]
+
+    public init(count: Int, favoritePrimes: [Int]) {
+        self.count = count
+        self.favoritePrimes = favoritePrimes
+    }
+}
+
+public enum CounterViewAction {
+    case counter(CounterAction)
+    case primeModal(PrimeModalAction)
+}
 
 public enum CounterAction {
     case plusTapped
     case minusTapped
 }
 
-public func counterReducer(_ state: inout Int, action: CounterAction) -> Void {
+public func counterReducer(_ state: inout CounterViewState, action: CounterAction) -> Void {
     switch action {
     case .minusTapped:
-        state -= 1
+        state.count -= 1
 
     case .plusTapped:
-        state += 1
+        state.count += 1
     }
 }

@@ -3,6 +3,7 @@
 // Copyright © 2021 codedby.pm. All rights reserved.
 //
 
+import Counter
 import FavoritePrimes
 import PrimeModal
 import SwiftUI
@@ -15,6 +16,15 @@ struct AppState {
 }
 
 extension AppState {
+
+    var counterState: CounterViewState {
+        get { .init(count: count, favoritePrimes: favoritePrimes) }
+        set {
+            count = newValue.count
+            favoritePrimes = newValue.favoritePrimes
+        }
+    }
+    
     var favoritePrimesState: FavoritePrimesState {
         get { .init(favoritePrimes: favoritePrimes) }
         set { favoritePrimes = newValue.favoritePrimes }
