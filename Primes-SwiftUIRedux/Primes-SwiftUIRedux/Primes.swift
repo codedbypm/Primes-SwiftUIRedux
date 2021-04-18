@@ -31,10 +31,28 @@ struct Primes: App {
         WindowGroup {
             NavigationView {
                 List {
-                    NavigationLink(destination: CounterView(store: store.view(on: \.count))) {
+                    NavigationLink(
+                        destination: CounterView(
+                            store: store.view(
+                                toState: \.count,
+                                fromAction: { counterAction -> AppAction in
+                                    .counter(counterAction)
+                                }
+                            )
+                        )
+                    ) {
                         Text("Counter Demo")
                     }
-                    NavigationLink(destination: FavoritePrimesView(store: store.view(on: \.favoritePrimesState))) {
+                    NavigationLink(
+                        destination: FavoritePrimesView(
+                            store: store.view(
+                                toState: \.favoritePrimesState,
+                                fromAction: { (favoritePrimeAction) -> AppAction in
+                                    .favoritePrimes(favoritePrimeAction)
+                                }
+                            )
+                        )
+                    ) {
                         Text("Favorite Primes")
                     }
                 }

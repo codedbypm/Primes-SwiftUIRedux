@@ -1,14 +1,14 @@
 import Combine
 
-public final class Store<State, Action>: ObservableObject {
+public final class Store<Value, Action>: ObservableObject {
 
     @Published
-    public private(set) var state: State
+    public private(set) var state: Value
 
-    private let reducer: (inout State, Action) -> Void
+    private let reducer: (inout Value, Action) -> Void
     private var cancellables: [AnyCancellable] = []
 
-    public init(state: State, reducer: @escaping (inout State, Action) -> Void) {
+    public init(state: Value, reducer: @escaping (inout Value, Action) -> Void) {
         self.state = state
         self.reducer = reducer
     }
@@ -17,18 +17,19 @@ public final class Store<State, Action>: ObservableObject {
         reducer(&state, action)
     }
 
-    public func view<LocalValue>(
-        on valueKeypath: WritableKeyPath<State, LocalValue>
-    ) -> Store<LocalValue, Action> {
-        let localStore = Store<LocalValue, Action>(
-            state: state[keyPath: valueKeypath],
-            reducer: { localState, action in
-                self.send(action)
-                localState = self.state[keyPath: valueKeypath]
+    public func view<LocalValue, LocalAction>(
+        toState stateTransform: @escaping (Value) -> LocalValue,
+        fromAction actionTransform: @escaping (LocalAction) -> Action
+    ) -> Store<LocalValue, LocalAction> {
+        let localStore = Store<LocalValue, LocalAction>(
+            state: stateTransform(state),
+            reducer: { localState, localAction in
+                self.send(actionTransform(localAction))
+                localState = stateTransform(self.state)
             }
         )
         let cancellable = $state.sink { [weak localStore] globalState in
-            localStore?.state = globalState[keyPath: valueKeypath]
+            localStore?.state = stateTransform(globalState)
         }
         localStore.cancellables.append(cancellable)
         return localStore
@@ -46,9 +47,9 @@ public func pullback<LocalValue, GlobalValue, LocalAction, GlobalAction>(
     }
 }
 
-public func combine<State, Action>(
-    _ reducers: (inout State, Action) -> Void...
-) -> (inout State, Action) -> Void {
+public func combine<Value, Action>(
+    _ reducers: (inout Value, Action) -> Void...
+) -> (inout Value, Action) -> Void {
 
     return { value, action in
         for reducer in reducers {
@@ -57,9 +58,9 @@ public func combine<State, Action>(
     }
 }
 
-public func loggingReducer<State, Action>(
-    _ reducer: @escaping (inout State, Action) -> Void
-) -> (inout State, Action) -> Void {
+public func loggingReducer<Value, Action>(
+    _ reducer: @escaping (inout Value, Action) -> Void
+) -> (inout Value, Action) -> Void {
     return { state, action in
         reducer(&state, action)
         print("Action: \(action)")
