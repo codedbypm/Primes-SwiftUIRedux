@@ -9,14 +9,13 @@ import Foundation
 import PrimeModal
 
 enum AppAction {
-    case counter(CounterAction)
-    case primeModal(PrimeModalAction)
+    case counter(CounterViewAction)
     case favoritePrimes(FavoritePrimesAction)
 }
 
 extension AppAction {
 
-    var counter: CounterAction? {
+    var counter: CounterViewAction? {
         get {
             guard case .counter(let action) = self else { return nil }
             return action
@@ -24,17 +23,6 @@ extension AppAction {
         set {
             guard let newValue = newValue else { return }
             self = .counter(newValue)
-        }
-    }
-
-    var primeModal: PrimeModalAction? {
-        get {
-            guard case .primeModal(let action) = self else { return nil }
-            return action
-        }
-        set {
-            guard let newValue = newValue else { return }
-            self = .primeModal(newValue)
         }
     }
 
@@ -55,13 +43,11 @@ func activityFeedReducer(
 ) -> (inout AppState, AppAction) -> Void {
     return { state, action in
         switch action {
-        case .counter:
-            break
-
-        case .primeModal(.addFavorite):
+        
+        case .counter(.primeModal(.addFavorite)):
             state.activities.append(.init(date: .init(), type: .add(state.count)))
 
-        case .primeModal(.removeFavorite):
+        case .counter(.primeModal(.removeFavorite)):
             state.activities.append(.init(date: .init(), type: .remove(state.count)))
 
         case let .favoritePrimes(.deleteFavoritePrimes(at: indexSet)):
@@ -69,6 +55,9 @@ func activityFeedReducer(
                 let value = state.favoritePrimes[$0]
                 state.activities.append(.init(date: .init(), type: .remove(value)))
             }
+
+        case .counter:
+            break
         }
         reducer(&state, action)
     }

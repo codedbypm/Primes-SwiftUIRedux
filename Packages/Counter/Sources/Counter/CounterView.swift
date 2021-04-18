@@ -9,7 +9,7 @@ public struct CounterView: View {
     var primesAPI: PrimesAPI
 
     @ObservedObject
-    var store: Store<CounterViewState, CounterViewAction>
+    var store: Store<CounterState, CounterViewAction>
 
     @State
     private var isPrimeModalShown = false
@@ -29,7 +29,7 @@ public struct CounterView: View {
     @State
     private var nthPrimeCancellable: AnyCancellable?
 
-    public init(store: Store<CounterViewState, CounterViewAction>) {
+    public init(store: Store<CounterState, CounterViewAction>) {
         self.store = store
     }
 
@@ -62,9 +62,7 @@ public struct CounterView: View {
             PrimeModalView(
                 store: store.view(
                     toState: { PrimeModalState(count: $0.count, favoritePrimes: $0.favoritePrimes) },
-                    fromAction: { primeModalAction in
-                        .primeModal(primeModalAction)
-                    }
+                    fromAction: { .primeModal($0) }
                 )
             )
         }

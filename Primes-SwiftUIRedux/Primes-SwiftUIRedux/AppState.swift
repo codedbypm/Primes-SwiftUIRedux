@@ -17,25 +17,17 @@ struct AppState {
 
 extension AppState {
 
-    var counterState: CounterViewState {
+    var counterState: CounterState {
         get { .init(count: count, favoritePrimes: favoritePrimes) }
         set {
             count = newValue.count
             favoritePrimes = newValue.favoritePrimes
         }
     }
-    
+
     var favoritePrimesState: FavoritePrimesState {
         get { .init(favoritePrimes: favoritePrimes) }
         set { favoritePrimes = newValue.favoritePrimes }
-    }
-
-    var primeModalState: PrimeModalState {
-        get { .init(count: count, favoritePrimes: favoritePrimes) }
-        set {
-            count = newValue.count
-            favoritePrimes = newValue.favoritePrimes
-        }
     }
 }
 
