@@ -87,14 +87,11 @@ func primeModalReducer(_ state: inout AppState, action: PrimeModalAction) -> Voi
     switch action {
     case .addFavorite:
         state.favoritePrimes.append(state.count)
-        state.activity.append(.init(date: .init(), type: .add(state.count)))
+        state.activities.append(.init(date: .init(), type: .add(state.count)))
 
     case .removeFavorite:
         state.favoritePrimes.removeAll(where: { $0 == state.count })
-        state.activity.append(.init(date: .init(), type: .remove(state.count)))
-
-    default:
-        break
+        state.activities.append(.init(date: .init(), type: .remove(state.count)))
     }
 }
 
@@ -104,7 +101,7 @@ func favoritePrimesReducer(_ state: inout FavoritePrimeState, action: FavoritePr
         set.forEach {
             let value = state.favoritePrimes[$0]
             state.favoritePrimes.remove(at: $0)
-            state.activity.append(.init(date: .init(), type: .remove(value)))
+            state.activities.append(.init(date: .init(), type: .remove(value)))
         }
     }
 }

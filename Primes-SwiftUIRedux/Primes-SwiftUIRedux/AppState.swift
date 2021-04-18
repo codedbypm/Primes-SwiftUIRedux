@@ -25,25 +25,25 @@ final class Store<State, Action>: ObservableObject {
 struct AppState {
     var count = 0
     var favoritePrimes: [Int] = []
-    var activity: [Activity] = []
+    var activities: [Activity] = []
     var loggedInUser: User? = nil
 }
 
 extension AppState {
     var favoritePrimesState: FavoritePrimeState {
         get {
-            .init(favoritePrimes: favoritePrimes, activity: activity)
+            .init(favoritePrimes: favoritePrimes, activities: activities)
         }
         set {
             favoritePrimes = newValue.favoritePrimes
-            activity = newValue.activity
+            activities = newValue.activities
         }
     }
 }
 
 struct FavoritePrimeState {
     var favoritePrimes: [Int] = []
-    var activity: [Activity] = []
+    var activities: [Activity] = []
 }
 
 struct Activity {
